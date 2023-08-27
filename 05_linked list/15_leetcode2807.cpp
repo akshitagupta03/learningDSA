@@ -13,25 +13,11 @@ using namespace std;
  */
 class Solution {
 public:
-    int gcd(int a, int b)
-    {
-        // Find Minimum of a and b
-        int result = min(a, b);
-        while (result > 0) {
-            if (a % result == 0 && b % result == 0) {
-                break;
-            }
-            result--;
-        }
-    
-        return result;
-    }
-
     ListNode* insertGreatestCommonDivisors(ListNode* head) {
         ListNode* temp = head->next;
         ListNode* prev = head;
         while(temp != NULL){
-            int a = gcd(prev->val, temp->val);
+            int a = __gcd(prev->val, temp->val);
             ListNode* curr = new ListNode(a);
             prev->next = curr;
             curr->next = temp;
