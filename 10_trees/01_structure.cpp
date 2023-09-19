@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <queue>
 using namespace std;
 
 struct node{
@@ -97,15 +98,64 @@ class tree{
     {
         return siz(head) + 1;
     }
+
+    //inorder traversal
+
+    void in(node* curr)
+    {
+        if(!curr)
+        {
+            in(curr->left);
+            cout<<curr->data<<" ";
+            in(curr->right);
+        }
+    }
+
+    void inorder()
+    {
+        in(head);
+    }
+
+    //post order traversal
+
+    void po(node* curr)
+    {
+        if(!curr)
+        {
+            po(curr->left);
+            po(curr->right);
+            cout<<curr->data<<" ";
+        }
+    }
+
+    void postorder()
+    {
+        po(head);
+    }
+
+    //level order traversal
+
+    void levelOrder()
+    {
+        node* curr = head;
+        queue<node*> q;
+        q.push(curr);
+        while(!q.empty())
+        {
+            node* temp = q.front();
+            cout<<temp->data<<" ";
+            q.pop();
+            if(temp->left) q.push(temp->left);
+            if(temp->right) q.push(temp->right);
+        }
+    }
 };
 
 int main(){
 
     tree t(13);
     t.create(); 
-    cout<<endl<<"preorder traversal - ";
-    t.preorder();
-    cout<<"\nheight - "<<t.height()<<endl;
-    cout<<"size - "<<t.size();
+    cout<<endl<<"level order traversal - ";
+    t.levelOrder();
     return 0;
 }
