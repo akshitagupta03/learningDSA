@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -18,7 +17,6 @@ class tree{
     
     node* head;
     public:
-
     //constructor
 
     tree(){}
@@ -55,6 +53,7 @@ class tree{
         curr -> right = tbar;
         insert(curr->right);
     }
+
     //create
 
     void create()
@@ -75,6 +74,29 @@ class tree{
     {
         printpre(head);
     }
+
+    // height
+    int hh(node* curr)
+    {
+        if(!curr) return 0;
+
+        return max(hh(curr->left), hh(curr->right)) + 1;
+    }
+    int height()
+    {
+        return hh(head);
+    }
+
+    // number of nodes
+    int siz(node* curr)
+    {
+        if(!curr) return 0;
+        return hh(curr->left) + hh(curr->right) + 1;
+    }
+    int size()
+    {
+        return siz(head) + 1;
+    }
 };
 
 int main(){
@@ -83,5 +105,7 @@ int main(){
     t.create(); 
     cout<<endl<<"preorder traversal - ";
     t.preorder();
-  return 0;
+    cout<<"\nheight - "<<t.height()<<endl;
+    cout<<"size - "<<t.size();
+    return 0;
 }
