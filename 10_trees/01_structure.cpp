@@ -28,7 +28,6 @@ class tree{
         head = h;
     }
     //insert
-
     void insert(node* curr)
     {
         int a;
@@ -62,6 +61,8 @@ class tree{
         insert(head);
     }
 
+    //preorder traversal
+    
     void printpre(node* curr)
     {
         if(curr)
@@ -149,13 +150,41 @@ class tree{
             if(temp->right) q.push(temp->right);
         }
     }
+
+    //print nodes at level k
+
+    void pp(node* curr, int k)
+    {
+        if(k == 0)
+        {
+            cout<<curr->data<<" ";
+            return;
+        }
+
+        if(curr->left){
+            pp(curr->left, k-1);
+        }
+
+        if(curr->right)
+        {
+            pp(curr->right, k-1);
+        }
+
+        return;
+    }
+
+    void printk(int k)
+    {
+        if(k == 1) cout<<head->data<<endl;
+        pp(head, k-1);
+    }
 };
 
 int main(){
 
     tree t(13);
     t.create(); 
-    cout<<endl<<"level order traversal - ";
-    t.levelOrder();
+    cout<<endl;
+    t.printk(2);
     return 0;
 }
