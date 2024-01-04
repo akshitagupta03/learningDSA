@@ -17,8 +17,7 @@ public:
         solve(index+1, ans, temp, arr);
     }
 
-    vector<vector<int>> subsetsWithDup(vector<int>& nums) 
-    {
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         sort(nums.begin(), nums.end());
         set<vector<int>> ans;
         vector<int> temp;
