@@ -3,25 +3,26 @@ using namespace std;
 
 class Solution {
 public:
+    // space optimisation
     int rob(vector<int>& nums) {
-        int prev = nums[0];
-        int prev2 = 0;
-        int ans = INT_MIN;
+        int n = nums.size();
+        int prev1 = nums[0], prev2 = 0;
 
-        for(int i=1; i<nums.size(); i++)
+        for(int i=1; i<n; i++)
         {
-            int take = nums[i];
+            int pick = nums[i];
             if(i > 1)
             {
-                take += prev2;
+                pick += prev2;
             }
-            int take2 = prev;
+            int notPick = prev1;
+            int curr = max(pick, notPick);
 
-            ans = max(take, take2);
-            prev2 = prev;
-            prev = ans;
+            prev2 = prev1;
+            prev1 = curr;
         }
-        return prev;
+
+        return prev1;
     }
 };
 
