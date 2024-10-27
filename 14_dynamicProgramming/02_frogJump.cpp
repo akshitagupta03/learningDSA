@@ -1,33 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int solve(int n, vector<int>& heights)
-{
-    int prev = 0;
-    int prev2 = 0;
-    int curr = INT_MAX;
-
-    for(int i=1; i<n; i++)
-    {
-        int one = prev + abs(heights[i] - heights[i-1]);
-        int two = INT_MAX;
-        if(i > 1)
+class Solution {
+  public:
+    // space optimisation
+    
+    int minimumEnergy(vector<int>& height, int n) {
+        // Code here
+        int prev2 = 0, prev1 = 0;
+        
+        for(int i=1; i<=n-1; i++)
         {
-            two = prev2 + abs(heights[i] - heights[i-2]);
+            int jumpOne = prev1 + abs(height[i] - height[i-1]);
+            int jumpTwo = INT_MAX;
+            
+            if(i > 1)
+            {
+                jumpTwo = prev2 + abs(height[i] - height[i-2]);
+            }
+            
+            int curr = min(jumpOne, jumpTwo);
+            prev2 = prev1;
+            prev1 = curr;
         }
-
-        curr = min(one, two);
-        prev2 = prev;
-        prev = curr;
+        return prev1;
     }
-    return prev;
-}
-
-int frogJump(int n, vector<int> &heights)
-{
-    // Write your code here.
-    return solve(n, heights);
-}
+};
 
 int main(){
 
