@@ -1,46 +1,5 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
 public:
-    void bfs(vector<vector<int>>& grid, vector<vector<int>>& vis, 
-    int i, int j, int& count)
-    {
-        queue<pair<int, int>> q;
-        q.push({i, j});
-        vis[i][j] = 1;
-
-        int m = grid.size();
-        int n = grid[0].size();
-
-        int di[] = {-1, 1};
-        int dj[] = {-1, 1};
-
-        while(!q.empty())
-        {
-            int row = q.front().first;
-            int col = q.front().second;
-            q.pop();
-
-            for(int delrow : di)
-            {
-                for(int delcol : dj)
-                {
-                    int nRow = row + delrow;
-                    int nCol = col + delcol;
-
-                    if(nRow >= 0 && nRow < m && nCol >= 0 && nCol < n && 
-                    grid[nRow][nCol] == 1 && vis[nRow][nCol] == 0 && 
-                    (row == nRow || col == nCol))
-                    {
-                        vis[nRow][nCol] = 1;
-                        count++;
-                        q.push({nRow, nCol});
-                    }
-                }
-            }
-        }
-    }
     int orangesRotting(vector<vector<int>>& grid) {
         int n = grid.size();
         int m = grid[0].size();
@@ -104,9 +63,3 @@ public:
         return time;
     }
 };
-
-int main(){
-
-    
-    return 0;
-}
